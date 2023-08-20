@@ -30,27 +30,31 @@ test("Get -> 'URL_BASE', should return status code 200 and res.body.length === 1
 })
 
 test("POST -> 'URL_BASE', should return status code 201 and res.body.firstName === user.firstName", async () => {
-  const user = {
-    firstName: "Emilio",
-    lastName: "Montero",
-    email: "emontero910@gmail.com",
-    password: "emilio123",
-    phone: "+593 0962932613"
-  }
-  const res = await request(app)
-    .post(URL_BASE)
-    .send(user)
+    const user = {
+      firstName: "Alejandro",
+      lastName: "Mon",
+      email: "alejandro@gmail.com",
+      password: "alejandro123",
+      phone: "+593 09236593"
+    }
+    const res = await request(app)
+      .post(URL_BASE)
+      .send(user)
 
   userId = res.body.id
 
-  expect(res.status).toBe(201)
-  expect(res.body).toBeDefined()
-  expect(res.body.firstName).toBe(user.firstName)
+    expect(res.status).toBe(201)
+    expect(res.body).toBeDefined()
+    expect(res.body.firstName).toBe(user.firstName)
 })
 
 test("PUT -> 'URL_BASE/:id', should return status code 200 and res.body.firstName === user.firstName", async () => {
   const user = {
-    firstName: "Angel",
+    firstName: "Joselu",
+      lastName: "jime",
+      email: "Joseluo@gmail.com",
+      password: "Joselu123",
+      phone: "+593 0896532353"
   }
 
   const res = await request(app)
@@ -68,8 +72,8 @@ test("PUT -> 'URL_BASE/:id', should return status code 200 and res.body.firstNam
 
 test("POST -> 'URL_BASE/login', should return status code 200 , res.body.email === user.email, and res.body.token to be defined", async () => {
   const user = {
-    email: "emontero910@gmail.com",
-    password: "emilio123",
+    email: "alejandro@gmail.com",
+    password: "alejandro123"
   }
   const res = await request(app)
     .post(`${URL_BASE}/login`)
@@ -82,22 +86,22 @@ test("POST -> 'URL_BASE/login', should return status code 200 , res.body.email =
 })
 
 
-test("POST -> 'URL_BASE/login', should return status code 401", async () => {
-  const user = {
-    email: "emontero910@gmail.com",
-    password: "invalid password",
-  }
-  const res = await request(app)
-    .post(`${URL_BASE}/login`)
-    .send(user)
+  test("POST -> 'URL_BASE/login', should return status code 401", async () => {
+    const user = {
+      email: "emontero910@gmail.com",
+      password: "invalid password",
+    }
+    const res = await request(app)
+      .post(`${URL_BASE}/login`)
+      .send(user)
 
-  expect(res.status).toBe(401)
-})
+    expect(res.status).toBe(401)
+  })
 
-test("DELETE -> 'URL_BASE/:id', should return status code 204", async () => {
-  const res = await request(app)
-    .delete(`${URL_BASE}/${userId}`)
-    .set("Authorization", `Bearer ${TOKEN}`)
+  test("DELETE -> 'URL_BASE/:id', should return status code 204", async () => {
+    const res = await request(app)
+      .delete(`${URL_BASE}/${userId}`)
+      .set("Authorization", `Bearer ${TOKEN}`)
 
-  expect(res.status).toBe(204)
-})
+    expect(res.status).toBe(204)
+  })
