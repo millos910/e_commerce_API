@@ -1,15 +1,14 @@
-const { getAll, create, getOne, remove, update } = require('../controllers/cateogory.controller');
+const { getAll, create, remove } = require('../controllers/cateogory.controller');
 const express = require('express');
+const { verifyJWT } = require('../utils/verifyJWT');
 
-const routerName = express.Router();
+const routerCategory = express.Router();
 
-routerName.route('/')
+routerCategory.route('/')
     .get(getAll)
-    .post(create);
+    .post(verifyJWT,create);
 
-routerName.route('/:id')
-    .get(getOne)
-    .delete(remove)
-    .put(update);
+routerCategory.route('/:id')
+    .delete(verifyJWT,remove)
 
-module.exports = routerName;
+module.exports = routerCategory;

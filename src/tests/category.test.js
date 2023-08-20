@@ -1,13 +1,13 @@
 const request=require("supertest")
 const app=require("../app")
-const URL_BASE="/api/v1/cateogries"
+const URL_BASE="/api/v1/categories"
 const URL_BASE_USERS="/api/v1/users"
 let TOKEN
 let categoryId
 beforeAll(async()=>{
     const user={
-        email:"emontero910@gmail.com",
-        password:"emilio123"
+      email: "emontero910@gmail.com",
+      password: "emilio123"
     }
     const res=await request(app)
         .post(`${URL_BASE_USERS}/login`)
@@ -18,7 +18,7 @@ beforeAll(async()=>{
 
     test("POST ->'URL_BASE', should return staus code 201 and res.body.name === category.name", async () => { //🔐
         const category = {
-          name: "Tecno"
+          name: "Donuts"
         }
         const res = await request(app)
           .post(URL_BASE)
