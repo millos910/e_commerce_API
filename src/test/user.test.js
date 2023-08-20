@@ -34,8 +34,8 @@ test("POST -> 'URL_BASE', should return status code 201 and res.body.firstName =
     firstName: "Emilio",
     lastName: "Montero",
     email: "emontero910@gmail.com",
-    password: "emilio1234",
-    phone: "0962932613"
+    password: "emilio123",
+    phone: "+593 0962932613"
   }
   const res = await request(app)
     .post(URL_BASE)
