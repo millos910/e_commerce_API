@@ -3,6 +3,7 @@ const Product=require('./Product')
 const Category = require("./Category")
 const Cart = require("./Cart")
 const Purchase = require("./Purchase")
+const ProductImg = require("./ProductImg")
 //!product -> category Id
 //?estamos generando un foreingKey  
 Product.belongsTo(Category) 
@@ -20,6 +21,10 @@ User.hasMany(Purchase)
 
 Purchase.belongsTo(Product)
 Product.hasMany(Purchase)
+
+//!productImg => productId
+ProductImg.belongsTo(Product)
+Product.hasMany(ProductImg)
 
 
 
