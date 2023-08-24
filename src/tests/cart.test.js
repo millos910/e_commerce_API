@@ -26,9 +26,9 @@ beforeAll(async () => {
   userId = res.body.user.id
 
   productBody = {
-    title: "productTest",
-    description: "lorem20",
-    price: 23
+    title:"SUPERGIRL DONNUTS",
+    description:"RED chocolote",
+    price:1.15,
   }
 
   product = await Product.create(productBody)
@@ -67,8 +67,8 @@ test("GET -> 'URL_BASE',should return status code 200 and res.body.length === 1"
     expect(res.body[0].product).toBeDefined()
     expect(res.body[0].productId).toBe(product.id)
     expect(res.body[0].product.id).toBe(product.id)
-    // expect(res.body[0].product.productImgs).toBeDefined()
-    // expect(res.body[0].product.productImgs).toHaveLength(0)
+    expect(res.body[0].product.productImgs).toBeDefined()
+    expect(res.body[0].product.productImgs).toHaveLength(0)
 
 })
 
